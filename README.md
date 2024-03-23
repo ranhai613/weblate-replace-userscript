@@ -9,4 +9,4 @@ Userscript for helping Japanese translators by replacing deepl translation in We
 
 ## Usage
 
-A deepl translation is automatically replaced with certain parts(ex "" to 「」, ... to ……) when copying to the textarea so that it can be more suitable for Japanese sentences.
+A deepl translation is automatically replaced with certain parts(ex "" to 「」, ... to ……) when copying and pasting to the textarea so that it can be more suitable for Japanese sentences.
