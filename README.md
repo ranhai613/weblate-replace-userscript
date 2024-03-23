@@ -1,6 +1,6 @@
 # weblate-replace-userscript
 
-Userscript for helping Japanese translators by replacing deepl translation in Weblate used with FTL: Multiverse Translation Project.
+Userscript for helping Japanese translators by making deepl translation a bit better in Weblate. This will be used with FTL: Multiverse Translation Project.
 
 ## Installation
 
@@ -9,4 +9,4 @@ Userscript for helping Japanese translators by replacing deepl translation in We
 
 ## Usage
 
-A deepl translation is automatically replaced with certain parts(ex "" to 「」, ... to ……) when copying and pasting to the textarea so that it can be more suitable for Japanese sentences.
+A deepl translation is automatically replaced with certain parts(e.g., "" to 「」, ... to ……) when copying and pasting to the textarea so that it can be more suitable for Japanese sentences.
