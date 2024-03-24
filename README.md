@@ -13,4 +13,4 @@ Weblateのdeepl翻訳を少し改善して、日本の翻訳者を助けるた�
 
 A deepl translation is automatically replaced with certain parts(e.g., "" to 「」, ... to ……) when copying and pasting to the textarea so that it can be more suitable for Japanese sentences.
 
-deeplの翻訳文は、テキストエリアにコピー＆ペーストする際、日本語の文章に適した形になるよう、特定の部分（例:「」を「......」に、「......」を「......」に）が自動的に置き換えられます。
+deeplの翻訳文は、テキストエリアにコピー＆ペーストする際、日本語の文章に適した形になるよう、特定の部分（例：""を「」に、...を……に）が自動的に置き換えられます。
