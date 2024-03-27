@@ -7,32 +7,31 @@
 // ==/UserScript==
 
 (() => {
-	var used = false;
+    var onclick = false
     var textarea = document.getElementsByClassName('translation-editor')[0];
-  	var copybtn;
-  	var parent = document.getElementById('machinery-translations');
-  	var observer = new MutationObserver((mutations) => {
-    		mutations.forEach((mutation) => {
-        		var copybtns = document.getElementsByClassName('js-copy-machinery');
-          		copybtn = copybtns[copybtns.length - 1];
-      			copybtn.addEventListener('click', () => {
-					textarea.addEventListener('input', Replace);
-        		});
-    		});
-		});
-  	var config = {
-   			childList: true
-		};
-  	observer.observe(parent, config);
-	function Replace(){
-		if(used) return;
-		textarea.value = Convert(textarea.value);
-		used = true;
-	}
-    function Convert(text){
+    textarea.addEventListener('input', () => {
+        if (!onclick) return;
+        textarea.value = Convert(textarea.value);
+        onclick = false;
+    });
+    var parent = document.getElementById('machinery-translations');
+    var observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            var copybtns = document.getElementsByClassName('js-copy-machinery');
+            var copybtn = copybtns[copybtns.length - 1];
+            copybtn.addEventListener('click', () => {
+                onclick = true;
+            });
+        });
+    });
+    var config = {
+        childList: true
+    };
+    observer.observe(parent, config);
+    function Convert(text) {
         var textarry = text.split(/["+「+」+]/);
-        for(var i = 0; i < textarry.length; i++){
-            if(i % 2 == 1){
+        for (var i = 0; i < textarry.length; i++) {
+            if (i % 2 == 1) {
                 textarry[i] = `「${textarry[i]}」`;
             }
         }
@@ -41,8 +40,8 @@
         newtext = newtext.replace(/\.\.\./g, '……');
         newtext = newtext.replace(/!/g, '！');
         newtext = newtext.replace(/\?/g, '？');
-      	newtext = newtext.replace(/よそ者/g, 'よぉそ者');
-      	newtext = newtext.replace(/多元宇宙/g, 'マルチバース');
+        newtext = newtext.replace(/よそ者/g, 'よぉそ者');
+        newtext = newtext.replace(/多元宇宙/g, 'マルチバース');
         return newtext;
     }
 })();
