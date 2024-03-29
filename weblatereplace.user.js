@@ -3,7 +3,7 @@
 // @author          ranhai613
 // @description     This is a script that replaces certain parts of deepl translation in Weblate.
 // @include         /^https?://weblate.hyperq.be/translate/.*$/
-// @version         1.1
+// @version         1.2
 // ==/UserScript==
 
 (() => {
