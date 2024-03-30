@@ -3,7 +3,7 @@
 // @author          ranhai613
 // @description     This is a script that replaces certain parts of deepl translation in Weblate.
 // @include         /^https?://weblate\.hyperq\.be/translate/.*$/
-// @version         2.0
+// @version         2.1
 // ==/UserScript==
 
 (() => {
@@ -16,7 +16,6 @@
         '多元宇宙': 'マルチバース',
         'ナメクジ': 'スラッグ',
     }
-
 
     let firstpers = {
         'わ': {
@@ -89,7 +88,6 @@
     }
     observer.observe(parent, config);
 
-
     function Convert(text) {
         let textarry = text.split(/["「」]+/);
         for (let i = 0; i < textarry.length; i++) {
@@ -102,7 +100,6 @@
         return newtext;
     }
 
-
     let searchtxt = '(';
     personarry.forEach((dict) => {
         searchtxt += '[';
@@ -112,8 +109,22 @@
         searchtxt += ']';
     });
     searchtxt += '「)';
+    let searchpatt = new RegExp(searchtxt);
+
+    let kanjiarry = new Array(2), pluralarry = new Array(2);
+    personarry.forEach((dict, i) => {
+        let patttxt = '';
+        for(let key in dict){
+            patttxt += `|(${dict[key]['kanji']})|(${dict[key]['hira']})`;
+        }
+        patttxt = patttxt.substring(1);
+        kanjiarry[i] = new RegExp(patttxt, 'g');
+        let pluraltxt = `(${patttxt})(達|(たち)|ら)`;
+        pluralarry[i] = new RegExp(pluraltxt, 'g');
+    });
+
     function PersonReplace(text) {
-        let textarry = text.split(new RegExp(searchtxt));
+        let textarry = text.split(searchpatt);
         if (textarry.length < 2) return text;
         let newtext = textarry[0];
         for (let i = 1; i < textarry.length; i++) {
@@ -122,15 +133,8 @@
                 personarry.forEach((dict, j) => {
                     for (let key in dict) {
                         if (textarry[i][j] == key) {
-                            let patttxt = '';
-                            for (let target in dict) {
-                                if (target == key) continue;
-                                patttxt += `|(${dict[target]['kanji']})|(${dict[target]['hira']})`;
-                            }
-                            patttxt = patttxt.substring(1);
-                            let pluraltxt = `(${patttxt})(達|(たち)|ら)`;
-                            targetarry[0] = targetarry[0].replaceAll(new RegExp(pluraltxt, 'g'), dict[key]['plural']);
-                            targetarry[0] = targetarry[0].replaceAll(new RegExp(patttxt, 'g'), dict[key]['kanji']);
+                            targetarry[0] = targetarry[0].replaceAll(pluralarry[j], dict[key]['plural']);
+                            targetarry[0] = targetarry[0].replaceAll(kanjiarry[j], dict[key]['kanji']);
                         }
                     }
                 });
