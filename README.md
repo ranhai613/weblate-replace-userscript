@@ -1,16 +1,25 @@
 # weblate-replace-userscript
 
-Userscript for helping Japanese translators by making deepl translation a bit better in Weblate. This will be used with FTL: Multiverse Translation Project.
-
-Weblateのdeepl翻訳を少し改善して、日本の翻訳者を助けるためのユーザースクリプトです。FTL: Multiverse Translation Projectで使用されます。
+Weblateの翻訳作業を少し改善して、日本の翻訳者を助けるユーザースクリプトです。FTL: Multiverse Translation Projectでの使用を想定しています。
 
 ## Installation
 
-1. Get a userscript manager (e.g., greasemonkey, tampermonkey, violentmonkey).ユーザースクリプトマネージャーを取得する（例：greasemonkey、tampermonkey、violentmonkey）。
-2. [Click this link](https://github.com/ranhai613/weblate-replace-userscript/raw/main/weblatereplace.user.js) to install the script.[リンク](https://github.com/ranhai613/weblate-replace-userscript/raw/main/weblatereplace.user.js)をクリックしてスクリプトをインストールする。
+1. ユーザースクリプトマネージャーを取得する（例：greasemonkey、tampermonkey、violentmonkey）。
+2. [リンク](https://github.com/ranhai613/weblate-replace-userscript/raw/main/weblatereplace.user.js)をクリックしてスクリプトをインストールする。
 
 ## Usage
+### ・Format
+deeplの翻訳文は、テキストエリアにコピー＆ペーストする際、日本語の文章に適した形になるよう、特定の部分が自動的に置き換えられます。（例：""を「」に、...を……に）
 
-A deepl translation is automatically replaced with certain parts(e.g., "" to 「」, ... to ……) when copying and pasting to the textarea so that it can be more suitable for Japanese sentences.
+### ・Person Replace
+セリフ内の一人称、二人称を置き換えます。「」で囲まれた文章があり、始まりの　「　の前に特定の文字を入力することで動作します。（例：わあ「 => 一人称が私、二人称があなたの文）
+#### 一人称の例
+- わ : 私、私たち
+- ぼ : 僕、僕たち
+- お : 俺、俺たち
+#### 二人称の例
+- あ : あなた、あなた達
+- き : 君、君たち
+- お : お前、お前たち
 
-deeplの翻訳文は、テキストエリアにコピー＆ペーストする際、日本語の文章に適した形になるよう、特定の部分（例：""を「」に、...を……に）が自動的に置き換えられます。
+その他の表現はスクリプト内を参照してください。
